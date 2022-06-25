@@ -1,0 +1,24 @@
+{
+  "name": "fintech",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo",
+    "migrate:undo:all": "sequelize db:migrate:undo:all"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "joi": "^17.6.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.0",
+    "sequelize-cli": "^6.4.1",
+    "uuid": "^8.3.2"
+  },
+  "description": ""
+}
