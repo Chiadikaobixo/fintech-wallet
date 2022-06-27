@@ -4,6 +4,8 @@ const dotenv = require('dotenv')
 const { v4 } = require('uuid')
 const models = require('./models')
 const { creditAccount, debitAccount } = require('./helpers/transactions')
+const { hashArguements } = require('./hash')
+const { checkRedisHash } = require('./redis')
 
 dotenv.config()
 
@@ -65,7 +67,7 @@ async function createUser(username, password) {
     }
 }
 
-createUser('chiadi', 'xxxxxx').then(console.log).catch(console.log);
+// createUser('chiadikaobi', 'xxxxxx').then(console.log).catch(console.log);
 
 /**
  * @param {number} account_id account_id of the account
@@ -116,7 +118,7 @@ createUser('chiadi', 'xxxxxx').then(console.log).catch(console.log);
   }
   
 
-deposit(3,2000).then(console.log).catch(console.log)
+// deposit(3,2000).then(console.log).catch(console.log)
 
 /**
  * @param {number} account_id account_id of the account
@@ -164,7 +166,7 @@ async function withdraw(account_id, amount) {
     }
   }
 
-  withdraw(3, 2000).then(console.log).catch(console.log)
+//   withdraw(3, 2000).then(console.log).catch(console.log)
 
 /**
  * @param {number} sender_id account_id of the sender
@@ -234,7 +236,6 @@ async function transfer(sender_id, recipient_id, amount) {
         }
 
         await t.commit()
-
         return {
             success: true,
             message: 'Transfer successful'
@@ -248,7 +249,7 @@ async function transfer(sender_id, recipient_id, amount) {
     }
 }
 
-transfer(2, 1, 60100).then(console.log).catch(console.log)
+transfer(1, 2, 600222).then(console.log).catch(console.log)
 
 /**
  * @param {string} reference reference of the transaction to reverse
