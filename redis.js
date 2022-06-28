@@ -26,10 +26,10 @@ async function checkRedisHash(accountId, hash) {
 
 }
 
-zadd('myset', 1, 'first').then(console.log).catch(console.log)
-zadd('myset', 2, 'second').then(console.log).catch(console.log)
-zadd('myset', 3, 'third').then(console.log).catch(console.log)
+// zadd('myset', 1, 'first').then(console.log).catch(console.log)
+// zadd('myset', 2, 'second').then(console.log).catch(console.log)
+// zadd('myset', 3, 'third').then(console.log).catch(console.log)
 
-zrevrange('myset', 0, '-1').then(console.log).catch(console.log)
+// zrevrange('myset', 0, '-1').then(console.log).catch(console.log)
 
 module.exports = { checkRedisHash, zadd, zrevrange, exists, zincrby, expireElement}

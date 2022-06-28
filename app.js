@@ -10,16 +10,18 @@ const { checkRedisHash } = require('./redis')
 dotenv.config()
 
 /**
+ * @param {string} email email of the user
  * @param {string} username username of the user
  * @param {string} password password of the user
  */
 
-async function createUser(username, password) {
+async function createUser(email, username, password) {
     const schema = joi.object({
+        email: joi.string().required(),
         username: joi.string().required(),
         password: joi.string().required()
     })
-    const validation = schema.validate({ username, password })
+    const validation = schema.validate({email, username, password })
 
     if (validation.error) {
         return {
@@ -31,7 +33,7 @@ async function createUser(username, password) {
     const t = await models.sequelize.transaction()
 
     try {
-        const existingUser = await models.users.findOne({ where: { username } }, { transaction: t })
+        const existingUser = await models.users.findOne({ where: {email, username } }, { transaction: t })
         if (existingUser) {
             return {
                 success: false,
@@ -39,6 +41,7 @@ async function createUser(username, password) {
             }
         }
         const user = await models.users.create({
+            email,
             username,
             password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
         }, {
@@ -67,7 +70,7 @@ async function createUser(username, password) {
     }
 }
 
-// createUser('chiadikaobi', 'xxxxxx').then(console.log).catch(console.log);
+// createUser('chiadisd@gmail.com','chiadikaobixoss', 'xxxxxx').then(console.log).catch(console.log);
 
 /**
  * @param {number} account_id account_id of the account
@@ -118,7 +121,7 @@ async function createUser(username, password) {
   }
   
 
-// deposit(3,2000).then(console.log).catch(console.log)
+// deposit(3, 82000).then(console.log).catch(console.log)
 
 /**
  * @param {number} account_id account_id of the account
@@ -249,7 +252,7 @@ async function transfer(sender_id, recipient_id, amount) {
     }
 }
 
-transfer(1, 2, 600222).then(console.log).catch(console.log)
+// transfer(1, 2, 600222).then(console.log).catch(console.log)
 
 /**
  * @param {string} reference reference of the transaction to reverse
